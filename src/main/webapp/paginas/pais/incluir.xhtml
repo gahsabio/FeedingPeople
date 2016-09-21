@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="/WEB-INF/templates/template.xhtml">
+            <ui:define name="titulo">
+                Incluir País
+            </ui:define>
+            <ui:define name="content">
+                <h1>País</h1>
+                <hr/>
+                <b:panel title="Inclusão País" look="primary">
+                    <h:form id="formIncluir" >
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <b:inputText value="#{paisController.pais.id}" readonly="true"  label="Código" style="width:50px"/>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <b:inputText value="#{paisController.pais.nome}" required="true" label="Nome" maxlength="100"/>
+                            </b:column>
+                        </b:row>                                               
+                        <b:row>
+                            <b:column offset-lg="1" span="2">
+                                <b:commandButton value="Salvar" look="sucess" action="#{paisController.incluir()}"/>
+                            </b:column>
+                            <b:column span="1">
+                                <b:commandButton value="Cancelar" look="info" icon="cancel" immediate="true" action="#{paisController.doCancelar()}" />
+                            </b:column>
+                        </b:row>
+                    </h:form>
+                </b:panel>    
+
+            </ui:define>    
+        </ui:composition>
+    </body>
+</html>

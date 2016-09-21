@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+       
+        <ui:composition template="/WEB-INF/templates/template.xhtml">
+            <ui:define name="titulo">
+                Lista de País
+            </ui:define>
+            <ui:define name="content">
+                <h1>País</h1>
+                <hr/>
+                <h:form>
+                    <b:panel title="Lista de Países" look="primary">                     
+                        <h:dataTable id="paisData" value="#{paisController.listaPais}" 
+                                     var="item" styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Código"/>
+                                </f:facet> 
+                                <h:outputText value="#{item.id}"/>
+                            </h:column>  
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet> 
+                                <h:outputText value="#{item.nome}"/>
+                            </h:column> 
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações"/>
+                                </f:facet>
+                                <h:commandLink title="Alterar Registro" action="#{paisController.doAlterar()}">                                    
+                                    <h:graphicImage value="/resources/images/upd.png"></h:graphicImage>
+                                    <f:setPropertyActionListener value="#{item}" target="#{paisController.paisSelecionado}"/>
+                                </h:commandLink>
+                                <h:commandLink title="Excluir Registro" action="#{paisController.doRemover()}">
+                                    <h:graphicImage value="/resources/images/delete.png"></h:graphicImage>
+                                    <f:setPropertyActionListener value="#{item}" target="#{paisController.paisSelecionado}"/>
+                                </h:commandLink>
+                                <h:commandLink title="Consultar Registro" action="#{paisController.doConsultar()}">
+                                    <h:graphicImage value="/resources/images/consulta.png"></h:graphicImage>
+                                    <f:setPropertyActionListener value="#{item}" target="#{paisController.paisSelecionado}"/>
+                                </h:commandLink>
+                            </h:column>                            
+                        </h:dataTable>   
+            
+                        <b:commandButton value="Incluir" action="#{paisController.doIncluir()}"></b:commandButton>
+                    </b:panel>
+                </h:form>             
+            </ui:define>                                    
+        </ui:composition>                        
+    </body>    
+</html>
